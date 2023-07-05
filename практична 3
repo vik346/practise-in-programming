@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+    int p; // Кількість розрядів
+    scanf("%d", &p);
+
+    int dp5[31] = {0}; // Масив для чисел з останньою цифрою 5
+    int dp9[31] = {0}; // Масив для чисел з останньою цифрою 9
+
+    dp5[1] = 1;
+    dp9[1] = 1;
+    dp5[2] = 4;
+    dp9[2] = 4;
+
+    for (int i = 3; i <= p; i++) {
+        dp5[i] = dp5[i - 1] + dp5[i - 2] + dp5[i - 3];
+        dp9[i] = dp9[i - 1] + dp9[i - 2] + dp9[i - 3];
+    }
+
+    int result = dp5[p] + dp9[p];
+    printf("%d\n", result);
+
+    return 0;
+}
+
