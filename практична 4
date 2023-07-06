@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main() {
+    int n; // Вхідне число n
+    scanf("%d", &n);
+
+    int count = 0; // Лічильник рівних дільників
+
+    for (int i = 1; i <= n; i++) {
+        if (n % i == n / i) {
+            count++;
+        }
+    }
+
+    printf("%d\n", count); // Виводимо результат
+
+    return 0;
+}
