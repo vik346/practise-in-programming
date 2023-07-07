@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+
+// Функція для обчислення факторіала
+int factorial(int n) {
+    if (n <= 1)
+        return 1;
+    else
+        return n * factorial(n - 1);
+}
+
+// Функція для обчислення кількості анаграм
+int countAnagrams(char word[]) {
+    int len = strlen(word);
+    int count[26] = {0};  // Масив для зберігання кількості кожної букви
+    int denominator = 1;  // Знаменник для обчислення кількості анаграм
+
+    // Обчислення кількості кожної букви у слові
+    for (int i = 0; i < len; i++) {
+        count[word[i] - 'A']++;
+    }
+
+    // Обчислення знаменника
+    for (int i = 0; i < 26; i++) {
+        denominator *= factorial(count[i]);
+    }
+
+    // Обчислення кількості анаграм
+    int anagrams = factorial(len) / denominator;
+    return anagrams;
+}
+
+int main() {
+    char word[15];
+
+    // Зчитуємо слово
+    printf("Введіть слово: ");
+    scanf("%s", word);
+
+    // Обчислюємо кількість анаграм
+    int anagrams = countAnagrams(word);
+
+    // Виводимо результат
+    printf("Кількість анаграм: %d\n", anagrams);
+
+    return 0;
+}
